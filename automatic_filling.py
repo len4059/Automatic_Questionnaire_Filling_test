@@ -1,4 +1,8 @@
 # This is a testing code written by Enoch
+
+# Chromne version is 128.0.6613.85
+# Chromedriver version is 128.0.6613.84
+
 # Version 1.0
 
 from selenium import webdriver
