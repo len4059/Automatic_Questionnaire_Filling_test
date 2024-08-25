@@ -1,9 +1,9 @@
 # This is a testing code written by Enoch
 
-# Chromne version is 128.0.6613.85
+# Chrome version is 128.0.6613.85
 # Chromedriver version is 128.0.6613.84
 
-# Version 1.0
+# Version 1.0 (2024/08/26)
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
