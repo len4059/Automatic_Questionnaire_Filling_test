@@ -13,7 +13,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import tkinter as tk
-from tkinter import messagebox
 from tkinter import font
 
 import time
