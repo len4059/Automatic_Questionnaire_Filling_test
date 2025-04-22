@@ -1,2 +1,2 @@
-﻿# Automatic_Questionnaire_Filling_test
-This is a Python-based testing project developed for my previous company, aimed at automatically filling out questionnaire!
+# Automatic_Questionnaire_Filling_test
+This is a testing python code for my ex-company, and the target is to automaticlly fill the questionnarie!
