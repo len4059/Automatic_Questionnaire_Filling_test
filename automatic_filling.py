@@ -85,7 +85,8 @@ def submit():
 
 def auto():
     global times
-    service = Service(executable_path = "chromedriver.exe")
+    chromedriver_path = resource_path("chromedriver.exe")
+    service = Service(executable_path=chromedriver_path)
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     options.add_argument("--disable-blink-features=AutomationControlled")
