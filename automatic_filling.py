@@ -18,9 +18,10 @@ from selenium.common.exceptions import (
 )
 
 import tkinter as tk
-from tkinter import font
+from tkinter import font, messagebox
 
 import time
+from datetime import datetime, date
 
 age_hint = "不得小於18或大於99"
 date_hint = "月/日/年（勿超過今日日期）"
@@ -55,10 +56,18 @@ def do(driver, action, max_retry=10, wait_time=5):
 
 
 def submit():
-    global age, date, times
-    age = int(age_entry.get())
-    date = date_entry.get()
-    times = int(times_entry.get())
+    global age, visit_date, times
+    try:
+        age = int(age_entry.get())
+        if not 18 <= age <= 99:
+            raise ValueError
+        visit_date = date_entry.get()
+        times = int(times_entry.get())
+        if times <= 0:
+            raise ValueError
+    except ValueError:
+        tk.messagebox.showerror("輸入錯誤", "請確認年齡、日期與次數")
+        return
     window.destroy()
     auto()         
 
@@ -68,8 +77,9 @@ def auto():
     service = Service(executable_path = "chromedriver.exe")
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
-    driver = webdriver.Chrome(options=options, service=service)
-    driver.implicitly_wait(2)        
+    options.add_argument("--disable-blink-features=AutomationControlled")
+    options.page_load_strategy = "eager"
+    driver = webdriver.Chrome(options=options, service=service)       
 
     survey_url = "https://survey.medallia.com/?lego-retail-lcs&store=retail_20077&lng=zh_TW&fbclid=IwY2xjawE058NleHRuA2FlbQIxMAABHb4npEtLA9viddKcuL_4cbNwmejJgOiw0vRGnE6xrUBzS2aRZo5aCas8IA_aem_Cw0cH4HFZz7j31bIGqmXMA"
 
@@ -78,36 +88,51 @@ def auto():
     while times > 0:
 
         driver.delete_all_cookies()
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonBegin")))
     
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonBegin"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "spl_q_lego_global_age_txt")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "spl_q_lego_global_age_txt"))
         ).send_keys(age))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "cal_q_lego_retail_transaction_date_")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.presence_of_element_located((By.ID, "cal_q_lego_retail_transaction_date_"))
-        ).send_keys(date))
+        ).send_keys(str(visit_date)))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         do(driver, lambda: driver.execute_script("""
             const el = document.getElementById(arguments[0]);
@@ -116,13 +141,16 @@ def auto():
             el.dispatchEvent(new Event('change', {bubbles:true}));
         """, "onf_q_lego_global_ltr10_11"))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         do(driver, lambda: driver.execute_script("""
             const xpath = arguments[0];
@@ -134,13 +162,16 @@ def auto():
             el.click();
         """, '/html/body/div/div/form/div/div[2]/div[1]/fieldset/div/div/ul/li[3]/div/div/div/div[2]/span'))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         do(driver, lambda: driver.execute_script("""
             const xp = '/html/body/div/div/form/div/div[2]/div/fieldset/div/div/ul/li[1]/div/div/div/div[2]/span';
@@ -150,13 +181,16 @@ def auto():
             el.click();
         """))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         SAT_IDS = [
             'onf_q_lego_retail_fun_in_store_sat10_11',
@@ -182,19 +216,25 @@ def auto():
         for rid in SAT_IDS:
             do(driver, lambda rid=rid: check_radio_by_id(driver, rid))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10)
             .until(EC.element_to_be_clickable((By.ID, "buttonNext")))
             .click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         do(driver, lambda: driver.execute_script("""
             const xp = '/html/body/div/div/form/div/div[2]/div[1]/fieldset/div/div/ul/li[2]/div/div/div/div[2]/span';
@@ -206,13 +246,16 @@ def auto():
             el.click();
         """))
 
-        time.sleep(1.5)
+        time.sleep(0.5)
+
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "buttonFinish")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.ID, "buttonFinish"))
         ).click())
 
-        time.sleep(1.5)
+        time.sleep(0.5)
 
         do(driver, lambda: driver.execute_script(
             "window.location.href = arguments[0];", survey_url
