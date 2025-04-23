@@ -92,7 +92,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonBegin")))
     
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonBegin"))
         ).click())
 
@@ -101,7 +101,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "spl_q_lego_global_age_txt")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.ID, "spl_q_lego_global_age_txt"))
         ).send_keys(age))
 
@@ -110,7 +110,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -119,7 +119,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "cal_q_lego_retail_transaction_date_")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.presence_of_element_located((By.ID, "cal_q_lego_retail_transaction_date_"))
         ).send_keys(str(visit_date)))
 
@@ -128,7 +128,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -146,7 +146,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -167,7 +167,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -186,7 +186,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -205,7 +205,7 @@ def auto():
 
         def check_radio_by_id(driver, rid):
             # 等 radio 真正存在再動手
-            el = WebDriverWait(driver, 15).until(
+            el = WebDriverWait(driver, 30).until(
                 EC.presence_of_element_located((By.ID, rid))
             )
             driver.execute_script("""
@@ -221,7 +221,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonNext"))
         ).click())
 
@@ -230,7 +230,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
-        do(driver, lambda: WebDriverWait(driver, 10)
+        do(driver, lambda: WebDriverWait(driver, 60)
             .until(EC.element_to_be_clickable((By.ID, "buttonNext")))
             .click())
 
@@ -251,7 +251,7 @@ def auto():
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonFinish")))
 
-        do(driver, lambda: WebDriverWait(driver, 10).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonFinish"))
         ).click())
 
@@ -263,7 +263,7 @@ def auto():
 
         time.sleep(2)
 
-        do(driver, lambda: WebDriverWait(driver, 15).until(
+        do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonBegin"))))
 
         times -= 1
