@@ -44,7 +44,7 @@ RETRY_EXCEPTIONS = (
     JavascriptException
 )
 
-def do(driver, action, max_retry=10, wait_time=5):
+def do(driver, action, max_retry=20, wait_time=5):
     for attempt in range(1, max_retry + 1):
         try:
             return action()
@@ -89,7 +89,7 @@ def auto():
 
         driver.delete_all_cookies()
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonBegin")))
     
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -98,7 +98,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "spl_q_lego_global_age_txt")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -107,7 +107,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -116,7 +116,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "cal_q_lego_retail_transaction_date_")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -125,7 +125,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -143,7 +143,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -164,7 +164,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -183,7 +183,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -218,7 +218,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
@@ -227,7 +227,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonNext")))
 
         do(driver, lambda: WebDriverWait(driver, 10)
@@ -248,7 +248,7 @@ def auto():
 
         time.sleep(0.5)
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonFinish")))
 
         do(driver, lambda: WebDriverWait(driver, 10).until(
