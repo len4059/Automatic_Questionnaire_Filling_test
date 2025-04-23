@@ -3,7 +3,7 @@
 # Chrome version is 135.0.7049.96
 # Chromedriver version is 135.0.7049.95
 
-# Version 2.0 (2025/04/22)
+# Version 2.0 (2025/04/23)
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
