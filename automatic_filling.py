@@ -23,9 +23,20 @@ from tkinter import font, messagebox
 import time
 from datetime import datetime, date
 
+import os
+import sys
+
 age_hint = "不得小於18或大於99"
 date_hint = "月/日/年（勿超過今日日期）"
 times_hint = "執行完後自動關閉"
+
+def resource_path(relative_path):
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath("."), relative_path)
+
+chromedriver_path = resource_path("chromedriver.exe")
+service = Service(executable_path=chromedriver_path)
 
 def on_entry_click(event, entry, placeholder):
     if entry.get() == placeholder:
