@@ -1,9 +1,16 @@
-# This is a testing code written by Enoch
+"""
+This is a testing code written by Enoch
 
-# Chrome version is 135.0.7049.96
-# Chromedriver version is 135.0.7049.95
+Chrome version is 139.0.7258.139
+Chromedriver version is 139.0.7258.138
 
-# Version 2.0 (2025/04/23)
+Version 2.2 (2025/08/23)
+
+Disclaimer:
+This script is provided "as is", without any warranty. 
+The author assumes no responsibility for any damage, loss, 
+or issues caused by using this script. Use at your own risk.
+"""
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
