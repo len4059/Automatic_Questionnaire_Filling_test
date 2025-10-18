@@ -1,10 +1,10 @@
 """
 This is a testing code written by Enoch
 
-Chrome version is 139.0.7258.139
-Chromedriver version is 139.0.7258.138
+Chrome version is 141.0.7390.108
+Chromedriver version is 141.0.7390.78
 
-Version 2.2 (2025/08/23)
+Version - 2.21 (2025/10/19)
 
 Disclaimer:
 This script is provided "as is", without any warranty. 
