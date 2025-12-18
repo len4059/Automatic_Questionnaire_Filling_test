@@ -1,8 +1,8 @@
 """
 This is a testing code written by Enoch
 
-Chrome version is 141.0.7390.108
-Chromedriver version is 141.0.7390.78
+Chrome version is 143.0.7499.147
+Chromedriver version is 143.0.7499.146
 
 Version - 2.21 (2025/10/19)
 
