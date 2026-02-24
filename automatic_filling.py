@@ -1,10 +1,7 @@
 """
 This is a testing code written by Enoch
 
-Chrome version is 143.0.7499.147
-Chromedriver version is 143.0.7499.146
-
-Version - 2.21 (2025/10/19)
+Version - 3.0 (2026/02/24)
 
 Disclaimer:
 This script is provided "as is", without any warranty. 
@@ -13,7 +10,6 @@ or issues caused by using this script. Use at your own risk.
 """
 
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -41,9 +37,6 @@ def resource_path(relative_path):
     if hasattr(sys, '_MEIPASS'):
         return os.path.join(sys._MEIPASS, relative_path)
     return os.path.join(os.path.abspath("."), relative_path)
-
-chromedriver_path = resource_path("chromedriver.exe")
-service = Service(executable_path=chromedriver_path)
 
 def on_entry_click(event, entry, placeholder):
     if entry.get() == placeholder:
@@ -92,13 +85,11 @@ def submit():
 
 def auto():
     global times
-    chromedriver_path = resource_path("chromedriver.exe")
-    service = Service(executable_path=chromedriver_path)
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.page_load_strategy = "eager"
-    driver = webdriver.Chrome(options=options, service=service)       
+    driver = webdriver.Chrome(options=options)       
 
     survey_url = "https://survey.medallia.com/?lego-retail-lcs&store=retail_20077&lng=zh_TW&fbclid=IwY2xjawE058NleHRuA2FlbQIxMAABHb4npEtLA9viddKcuL_4cbNwmejJgOiw0vRGnE6xrUBzS2aRZo5aCas8IA_aem_Cw0cH4HFZz7j31bIGqmXMA"
 
