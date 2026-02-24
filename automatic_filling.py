@@ -1,7 +1,7 @@
 """
-This is a testing code written by Enoch
+This is a testing code written by Enoch Lu
 
-Version - 3.0 (2026/02/24)
+Version - 3.1 (2026/02/24)
 
 Disclaimer:
 This script is provided "as is", without any warranty. 
@@ -29,14 +29,18 @@ from datetime import datetime, date
 import os
 import sys
 
+EXPIRY_DATE = date(2026, 7, 31) 
+
 age_hint = "不得小於18或大於99"
 date_hint = "月/日/年（勿超過今日日期）"
 times_hint = "執行完後自動關閉"
 
-def resource_path(relative_path):
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath("."), relative_path)
+def enforce_expiry():
+    today = date.today()
+    if today > EXPIRY_DATE:
+        os._exit(0)
+
+enforce_expiry()
 
 def on_entry_click(event, entry, placeholder):
     if entry.get() == placeholder:
