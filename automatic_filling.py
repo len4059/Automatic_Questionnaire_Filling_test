@@ -1,7 +1,7 @@
 """
 This is a testing code written by Enoch Lu
 
-Version - 3.1 (2026/02/24)
+Version - 3.2 (2026/04/05)
 
 Disclaimer:
 This script is provided "as is", without any warranty. 
@@ -29,7 +29,7 @@ from datetime import datetime, date
 import os
 import sys
 
-EXPIRY_DATE = date(2026, 7, 31) 
+EXPIRY_DATE = date(2026, 11, 1) 
 
 age_hint = "不得小於18或大於99"
 date_hint = "月/日/年（勿超過今日日期）"
@@ -100,8 +100,6 @@ def auto():
     driver.get(survey_url)
 
     while times > 0:
-
-        driver.delete_all_cookies()
 
         WebDriverWait(driver, 60).until(
             EC.visibility_of_element_located((By.ID, "buttonBegin")))
@@ -269,18 +267,22 @@ def auto():
             EC.element_to_be_clickable((By.ID, "buttonFinish"))
         ).click())
 
-        time.sleep(0.5)
+        time.sleep(2)
 
-        do(driver, lambda: driver.execute_script(
-            "window.location.href = arguments[0];", survey_url
-        ))
+        times -= 1
+        if times == 0:
+            break
+
+        driver.delete_all_cookies()
+        driver.execute_script("window.localStorage.clear();")
+        driver.execute_script("window.sessionStorage.clear();")
+
+        driver.get(survey_url)
 
         time.sleep(2)
 
         do(driver, lambda: WebDriverWait(driver, 60).until(
             EC.element_to_be_clickable((By.ID, "buttonBegin"))))
-
-        times -= 1
 
     driver.quit()
 
